@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客页面</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../dist/semantic.css">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./typo.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link rel="stylesheet" href="./lib/prism/prism.css">
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.js"></script>
+    <script src="../dist/semantic.js"></script>
+</head>
+<body>
+  <nav class="ui inverted attached segment A" id="m">
+    <div class="ui container B">
+      <!-- 菜单栏 -->
+      <!-- stackable表示页面可堆叠 -->
+      <div class="ui inverted secondary stackable menu"  id="link">
+        <div class="item">
+             <h2 class="ui teal header " style="position: relative; right: 460px;">启梦</h2>
+        </div>
+        <div class="left menu" id="me">
+          <!-- <a  href="VideoSearch.html" id="link" class="active item" ><i class="home icon"></i>首页</a>
+              <a href="DeleteManager.html"id="link" class="item"  ><i class="trash alternate outline icon"></i>管理</a>
+              <a href="VideoManager.html?id=userID"id="link"  class="item" ><i class="upload icon"></i>投稿</a>
+             
+                <i class="upload icon"></i>投稿 -->
+
+        </div>
+         
+              
+              
+           <div class="right menu">
+              <!-- 搜索栏 -->
+            <div class=" item">
+              <div class="ui icon inverted transparent input">
+                  <input type="text" id="inputName" placeholder="Search....">
+                  <i class="search link icon" onclick="LoadVideo()"> </i>
+                  
+              </div>
+          </div>
+            <div class="ui dropdown item" >
+                <div class="text" id="user">
+                    <!-- <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+  
+                    丽丽友 -->
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">注销</a>
+                </div>
+            </div>
+           </div>   
+  
+             
+      </div>
+     
+          
+    </div>
+  </nav>
+
+      <!-- 中间内容 -->
+      <div class="ui  container m-container m-padding-middle animate__animated animate__fadeIn">
+        <!-- 头部 -->
+        <div class="ui top attached segment">
+            <div class="ui horizontal link list">
+                <div class="item">
+                    <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg" alt="" class="ui avatar image">
+                <div class="content"><a href="#" class="header" id="submitter">丽丽友</a></div>
+                </div>
+
+                <div class="item">
+                    <i class="calendar icon" style="width:300px" id="date"></i>
+                </div>
+
+                <!-- <div class="item">
+                  <i class="eye icon"></i>2342
+              </div> -->
+            </div>
+        </div>
+       <!-- 图片区 -->
+        
+
+        <!-- 内容区 -->
+        <div class="ui attached padded segment" id="article">
+         
+            
+           
+            <!-- <h2 class="ui center aligned header" id="header"></h2>
+            <br>
+            <div id="content" class="typo typo-selection m-padded-lr m-padded-tb-large">
+            <pre><code class="language-css">p{color:red}</code></pre>
+             
+           </div> -->
+
+          
+          
+
+           
+           
+
+           
+
+          <div class="ui payQR flowing popup  transition hidden">
+            <div class="ui orange basic label">
+            <div class="ui images" style="font-size: inherit !important ">
+                <div class="image">
+                    <img src="images/p.jpg" alt="" class="ui rounded bordered image" style="width:120px">
+                    <div>微信</div>
+                </div>
+            </div>
+           </div>
+           </div>
+
+        </div>
+       
+        <!-- 留言区 -->
+        <div class="ui bottom attached segment">
+           <div class="ui teal segment">
+           <div class="ui form">
+            <!-- 评论区（from Semantic UI） -->
+            <div class="ui comments">
+                <h3 class="ui dividing header">Comments</h3>
+
+                <div class="comment" id="c">
+                  <!-- <a class="avatar">
+                    <img src="https://1.semantic-ui.com/images/avatar/small/matt.jpg">
+                  </a>
+                  <div class="content" >
+                    <a class="author">Matt</a>
+                    <div class="metadata">
+                      <span class="date">Today at 5:42PM</span>
+                    </div>
+                    <div class="text">
+                      How artistic!
+                    </div>
+                    <div class="actions">
+                      <a class="reply">Reply</a>
+                    </div>
+                  </div> -->
+                </div>
+               
+                
+              </div>
+           </div>
+           <!-- 评论区 -->
+            <div class="ui form">
+                 <div class="field">
+                    <textarea id="inputComment"   placeholder="请输入评论信息..."></textarea> 
+                </div>
+                 <div class="fields">
+                   
+
+                     <div class="field">
+                        <button class="ui teal  button" style="position: relative;right: -850px;" onclick="addComment()"><i class="edit icon"></i>发布</button>
+                     </div>
+                 </div>
+            </div>
+           </div>
+          
+        </div>
+      </div>
+       <!-- 底部 -->
+ <footer>
+  <div class="ui inverted vertical segment foot m-padded-tb-massive ">
+      
+      <div class="ui inverted section divider divide_line"></div>
+         <p  class="foot_text text_opacity">Copyright@2016-2017 Lirenmi Designed by Lirenmi</p>
+     </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="./lib/prism/prism.js"></script>
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const cid=urlParams.get('id');
+const nid = urlParams.get('id');
+const userID=urlParams.get('uid');
+
+function GetVideoById()
+{
+  $.ajax({
+    type:'GET',
+    url:'https://localhost:7181/api/Video/GetVideoById',
+    data:{id:nid},
+    success:(result)=>{
+      const container = $('#article');
+						container.empty();
+						let html = '';
+            html+=`
+            <img src=${result.pictureUrl} class="ui fluid rounded image">
+            <h2 class="ui center aligned header" id="header">${result.name}</h2>
+            <br>
+            
+            <div id="content" class="typo typo-selection m-padded-lr m-padded-tb-large">
+            <p> ${result.description}</p>
+            
+           </div>
+            `;
+     // $("#source").attr("src", result.url);
+     //$('#image').prop('src', 'http://i2.hdslb.com/bfs/archive/0d369644fd214efd4c276ec576d76daf2656c8e2.png');
+
+      //$('#video-source').attr('src', 'https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/95/18/772161895/772161895-1-208.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1676902407&gen=playurlv2&os=08ctbv&oi=1363604970&trid=fc312fdf9c864f7589999fb5d2047173T&mid=0&platform=html5&upsig=53c6a2e29dd6fe5fa85eee6a0178ba65&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&bw=52941&orderid=0,3&logo=80000000');
+     
+     $('#header').text(result.name);
+      $('#content').text(result.description);
+      $('#date').text(result.publishTime);
+      $('#submitter').text(result.submitter);
+       container.html(html);
+    }
+    
+  });
+  
+}
+//存评论
+
+function addComment()
+{ const userDialog=$('#inputComment').val().trim();
+   
+const publishTime=new Date().toISOString().slice(0,10);
+
+const commentlistid=cid;
+  $.ajax({
+          type:'POST',
+          url:`https://localhost:7181/api/Comment`,
+          data: JSON.stringify({commentlistid, userDialog,publishTime,userID}),
+						contentType: 'application/json',
+						success: (result)=>{
+              if(result==true)
+              {
+                 alert("发布成功！");
+              }
+              else{
+                alert("发布失败！");
+              }
+            
+              location.reload(true);//刷新
+            },
+  })
+}
+var userName;
+function LoadAllComments()
+{
+  $.ajax({
+    type:'GET',
+    url:'https://localhost:7181/api/Comment',
+    success:(result)=>{
+      const container=$('#c');
+              container.empty();
+              let html='';
+      result.forEach((element) => {
+        if(element.commentlistid==cid)
+      {  html+=`
+              <a class="avatar">
+                    <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg">
+                  </a>
+                  <div class="content" >
+                    <a class="author">${element.userName}</a>
+                    <div class="metadata">
+                      <span class="date">${element.publishTime}</span>
+                    </div>
+                    <div class="text">
+                      ${element.userDialog}
+                    </div>
+                    <div class="actions">
+                      <a class="reply">Reply</a>
+                    </div>
+                   
+                  </div>
+              
+              `;
+
+              if(element.userID==userID)
+              {
+                html+=`
+                
+                <div class="right content" >
+                      <button class="ui red basic button" onclick="deleteComment(${element.id})"  style="position:relative;right:-700px;top:-40px;">删除</button>
+                      </div>
+                `;
+              }
+      }
+      });
+        container.html(html);
+       
+    }
+  })
+}
+
+
+function deleteComment(ID)
+{//alert(ID);
+  if (!confirm('确定要删除这个评论吗？删除后不可恢复')) {
+					return;
+				}
+				$.ajax({
+					type: 'DELETE',
+					url: `https://localhost:7181/api/Comment?id=${ID}`,
+					success:(result)=>{
+						 alert("删除成功！");
+           // GetVideoById();
+            location.reload(true);//刷新
+
+					} 
+				});
+}
+var userName;
+function ShowUserName()
+      {
+          $.ajax({
+            type:'GET',
+            url:`https://localhost:7181/api/User/GetUserById?id=${userID}`,
+            success:(result)=>{
+              const container=$('#user');
+              container.empty();
+              let html='';
+            html+=`
+            <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+            ${result.userName}`;
+          userName=result.userName;
+           container.html(html);
+              
+            }
+            
+          })
+      }
+
+      function ShowMenu()
+      {
+        const menu=$('#me');
+        menu.empty();
+        let html='';
+        html+=`
+        <a  href="VideoSearch.html?id=${userID}" id="link" class="active item" style="position: relative; right: 150px;top:5px"><i class="home icon"></i>首页</a>
+                <a href="DeleteManager.html?id=${userID}"id="link" class="item"  style="position: relative; right: 150px;top:5px"><i class="trash alternate outline icon"></i>管理</a>
+                <a href="VideoManager.html?id=${userID}"id="link"  class="item" style="position: relative; right: 150px;top:5px"><i class="upload icon"></i>投稿</a>
+               
+                <i class="upload icon"></i>投稿 
+        
+        `
+        
+        
+        ;
+        menu.html(html);
+      }
+      LoadAllComments();
+    ShowUserName();
+   ShowMenu();
+    
+
+  GetVideoById();
+</script>
+
+
+</body>
+</html>

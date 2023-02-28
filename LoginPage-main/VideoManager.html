@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>博客发布</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/semantic.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="lib/editormd/css/editormd.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        background-color: #f9f9f9;
+      }
+      .ui.container {
+        margin-top: 50px;
+      }
+      .ui.form .field.error input,
+      .ui.form .field.error textarea {
+        border-color: #9f3a38;
+      }
+      .ui.form .error.message {
+        color: #9f3a38;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="ui inverted attached segment A" id="m">
+      <div class="ui container B">
+        <!-- 菜单栏 -->
+        <!-- stackable表示页面可堆叠 -->
+        <div class="ui inverted secondary stackable menu"  id="link">
+          <div class="item">
+               <h2 class="ui teal header " style="position: relative; right: 150px;">启梦</h2>
+          </div>
+          <div class="left menu" id="me">
+            <!-- <a  href="VideoSearch.html" id="link" class="active item" ><i class="home icon"></i>首页</a>
+                <a href="DeleteManager.html"id="link" class="item"  ><i class="trash alternate outline icon"></i>管理</a>
+                <a href="VideoManager.html?id=userID"id="link"  class="item" ><i class="upload icon"></i>投稿</a>
+               
+                  <i class="upload icon"></i>投稿 -->
+
+          </div>
+           
+                
+                
+             <div class="right menu">
+                <!-- 搜索栏 -->
+              <div class=" item">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" id="inputNam" placeholder="Search....">
+                    <i class="search link icon" onclick="LoadVideo()"> </i>
+                    
+                </div>
+            </div>
+              <div class="ui dropdown item" >
+                  <div class="text" id="user">
+                      <!-- <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+    
+                      丽丽友 -->
+                  </div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <a href="#" class="item">注销</a>
+                  </div>
+              </div>
+             </div>   
+    
+               
+        </div>
+       
+            
+      </div>
+    </nav>
+   
+  <!-- 二级导航栏 -->
+  <div class="ui attached pointing menu">
+    <div class="c right">
+        <a href="#" class=" active teal item">发布</a>
+        
+    </div>     
+</div>    
+
+    <div class="ui container m-padded-big">
+      <h1 class="ui center aligned header">博客发布</h1>
+      <form class="ui form">
+        <div class="field">
+          <label for="inputName">标题</label>
+          <input type="text" id="inputN"  placeholder="Enter title">
+        </div>
+
+       
+        <div class="field">
+          <label for="inputDescription">详情</label>
+          <div id="md-content">
+            <textarea  id="inputDescription" placeholder="Enter description" style="display: none;">
+            [TOC]
+
+                    #### Disabled options
+                    
+                    - TeX (Based on KaTeX);
+                    - Emoji;
+                    - Task lists;
+                    - HTML tags decode;
+                    - Flowchart and Sequence Diagram;
+          </textarea>
+          </div>
+          
+        </div>
+        <!-- <div class="field">
+          <label for="inputVUrl">Video URL</label>
+          <input type="text"  id="inputVUrl" placeholder="Enter video URL">
+        </div> -->
+        
+        <div class="field">
+          <label for="inputPicture">封面图URL</label>
+          <input type="text"  id="inputPicture" placeholder="Enter thumbnail URL">
+        </div>
+        <button class="ui teal button" type="button" onclick="addVideo()">发布</button>
+      </form>
+    </div>
+   
+    <!-- <button
+							type="button"
+							class="btn btn-primary"
+							onclick="addStudent()"
+						>
+							Add
+						</button> -->
+    <!-- 底部 -->
+ <footer>
+  <div class="ui inverted vertical segment foot m-padded-tb-massive ">
+      
+      <div class="ui inverted section divider divide_line"></div>
+         <p  class="foot_text text_opacity">Copyright@2016-2017 Lirenmi Designed by Lirenmi</p>
+     </div>
+</footer>
+<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdn.staticfile.org/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/editormd/editormd.min.js"></script>
+  <script>
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const userID=urlParams.get('id');
+var sub;
+function addVideo() {
+  
+				const name = $('#inputN').val().trim();
+      //alert(name);
+			   
+     
+				const description=marked($('#inputDescription').val().trim());
+           
+        const pictureurl=$('#inputPicture').val().trim();
+       const submitter=sub;
+				if (name&&description&&pictureurl) {
+					$.ajax({
+						type: 'POST',
+						url: 'https://localhost:7181/api/Video',
+						data: JSON.stringify({ name,description,pictureurl,submitter}),
+						contentType: 'application/json',
+						success: ()=>{
+             alert("发布成功！");
+             location.reload(true);
+            },
+             
+            
+                 
+            
+             
+							
+					
+						error: (error) => {
+							console.log(error);
+							alert('发布异常');
+						},
+					});
+				} else {
+					alert('请填全博客信息');
+				}
+			}
+
+      // 初始化Markdown
+var contentEditor;
+$(function() {
+    contentEditor = editormd("md-content", {
+        width   : "100%",
+        height  : 640,
+        syncScrolling : "single",
+        path    : "lib/editormd/lib/"
+    });
+    
+   
+});
+
+//  function addVideo(){
+  
+//   const title = $('#inputName').val().trim();
+//   const description=$('#inputDescription').val().trim();
+//   const video=$('#inputVideoUrl').val().trim();
+//   const picture=$('#inputPictureUrl').val().trim();
+
+//   if(title){
+//     $.ajax({
+//       type:'POST',
+//       url:'https://localhost:7181/api/Video',
+//       data:JSON.stringify({title,description,video,picture}),
+//       contentType:'application/json',
+//       success:alert('视频上传成功'),
+//     });
+//   }else{
+//     alert('Please enter both title and videourl');
+//   }
+// }
+ 
+function ShowUserName()
+      {
+          $.ajax({
+            type:'GET',
+            url:`https://localhost:7181/api/User/GetUserById?id=${userID}`,
+            success:(result)=>{
+              const container=$('#user');
+              container.empty();
+              let html='';
+            html+=`
+            <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+            ${result.userName}`;
+            sub=result.userName;
+           container.html(html);
+              
+            }
+            
+          })
+      }
+
+      function ShowMenu()
+      {
+        const menu=$('#me');
+        menu.empty();
+        let html='';
+        html+=`
+        <a  href="VideoSearch.html?id=${userID}" id="link" class=" item" style="position: relative; right: 150px;"><i class="home icon"></i>首页</a>
+                <a href="DeleteManager.html?id=${userID}"id="link" class="item"  style="position: relative; right: 150px;"><i class="trash alternate outline icon"></i>管理</a>
+                <a href="VideoManager.html?id=${userID}"id="link"  class="active item" style="position: relative; right: 150px;"><i class="upload icon"></i>投稿</a>
+               
+                <i class="upload icon"></i>投稿 
+        
+        `
+        
+        
+        ;
+        menu.html(html);
+      }
+    ShowUserName();
+   ShowMenu();
+ </script>
+  
+  </body>
+</html>

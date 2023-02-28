@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/semantic.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="dist/semantic.js"></script>  
+</head>
+  <body>
+
+    <nav class="ui inverted attached segment A" id="m">
+      <div class="ui container B">
+        <!-- 菜单栏 -->
+        <!-- stackable表示页面可堆叠 -->
+        <div class="ui inverted secondary stackable menu"  id="link">
+          <div class="item">
+               <h2 class="ui teal header " style="position: relative; right: 150px;">启梦</h2>
+          </div>
+          <div class="left menu" id="me">
+            <!-- <a  href="VideoSearch.html" id="link" class="active item" ><i class="home icon"></i>首页</a>
+                <a href="DeleteManager.html"id="link" class="item"  ><i class="trash alternate outline icon"></i>管理</a>
+                <a href="VideoManager.html?id=userID"id="link"  class="item" ><i class="upload icon"></i>投稿</a>
+               
+                  <i class="upload icon"></i>投稿 -->
+
+          </div>
+           
+                
+                
+             <div class="right menu">
+                <!-- 搜索栏 -->
+              <div class=" item">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" id="inputName" placeholder="Search....">
+                    <i class="search link icon" onclick="LoadVideo()"> </i>
+                    
+                </div>
+            </div>
+              <div class="ui dropdown item" >
+                  <div class="text" id="user">
+                    <!-- <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+    
+                    丽丽友
+                </div> -->
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <a href="#" class="item">注销</a>
+                  </div>
+              </div>
+             </div>   
+    
+               
+        </div>
+       
+            
+      </div>
+    </nav>
+
+     <div class="ui container m-padded-big" id="body">
+      <h1 class="ui header">Video Player</h1>
+      <div class="ui grid stackable">
+        <div class="ui ten wide column" >
+         
+          <div class="ui " data-source="youtube" id="picture" style="width:400px; height:200px">
+            <!-- <video controls autoplay id="video-media">
+             <source id="source" src="" type="video/mp4">
+           </video> -->
+           <!-- <img src="http://i2.hdslb.com/bfs/archive/0d369644fd214efd4c276ec576d76daf2656c8e2.png" alt="" id="image"> -->
+
+          </div>
+        </div>
+        <div class="ui six wide column" id="video-description">
+          <h2 class="ui header">Video Description</h2>
+          <p id="description" style="letter-spacing: 0.1em;">This is a video about...</p>
+        </div>
+      </div>
+    </div> 
+
+<!-- 评论区 -->
+<div class="ui  comments" style="position: relative;left: 220px;top: 200px;">
+  <h3 class="ui dividing header">Comments</h3>
+  <div class="comment">
+    <a class="avatar">
+      <img src="https://1.semantic-ui.com/images/avatar/small/matt.jpg">
+    </a>
+    <div class="content">
+      <a class="author">Matt</a>
+      <div class="metadata">
+        <span class="date">Today at 5:42PM</span>
+      </div>
+      <div class="text">
+        How artistic!
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+  
+  <form class="ui reply form">
+    <div class="field">
+      <textarea></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form>
+</div>
+
+       <!-- 底部 -->
+ <footer>
+  <div class="ui inverted vertical segment foot m-padded-tb-massive ">
+      
+      <div class="ui inverted section divider divide_line"></div>
+         <p  class="foot_text text_opacity">Copyright@2016-2017 Lirenmi Designed by Lirenmi</p>
+     </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  
+  <script>
+   //window.location.href = "http://127.0.0.1:5502/VideoS.html";
+
+  //  var a=1;
+    //window.history.pushState("", "" ,"http://127.0.0.1:5502/VideoPlayer?id=61");
+
+    const urlParams = new URLSearchParams(window.location.search);
+   const uid=urlParams.get('uid'); 
+   const urlParam=new URLSearchParams(window.location.search);
+const nid = urlParam.get('id');
+
+
+//alert(id);
+
+
+
+function CreateNewVideoPage()
+{
+  const id = urlParams.get('id');
+  
+ $.ajax({
+  type:'GET',
+  url:'https://localhost:7181/api/Video/GetVideoById',
+  data:{keyword:id},
+  
+  success:(result)=>{
+    const container=$('#body');
+    container.empty();
+    let html='';
+    alert(id);
+    html+=` <h1 class="ui header">Video Player</h1>
+      <div class="ui grid stackable">
+        <div class="ui ten wide column" >
+         
+          <div class="ui " data-source="youtube" id="video-player">
+            <video controls autoplay id="video-media">
+             <source src=${result.url}>
+           </video>
+
+          </div>
+        </div>
+        <div class="ui six wide column" id="video-description">
+          <h2 class="ui header">Video Description</h2>
+          <p>${result.description}</p>
+        </div>
+      </div>
+
+    `;
+    container.html(html);
+  }
+ })
+        
+ 
+}
+ 
+function GetVideoById()
+{
+  $.ajax({
+    type:'GET',
+    url:'https://localhost:7181/api/Video/GetVideoById',
+    data:{id:nid},
+    success:(result)=>{
+      const container = $('#picture');
+						container.empty();
+						let html = '';
+            html+=`
+            <img src=${result.pictureUrl} style="width:500px; height:300px">
+            `;
+     // $("#source").attr("src", result.url);
+     //$('#image').prop('src', 'http://i2.hdslb.com/bfs/archive/0d369644fd214efd4c276ec576d76daf2656c8e2.png');
+
+      //$('#video-source').attr('src', 'https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/95/18/772161895/772161895-1-208.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1676902407&gen=playurlv2&os=08ctbv&oi=1363604970&trid=fc312fdf9c864f7589999fb5d2047173T&mid=0&platform=html5&upsig=53c6a2e29dd6fe5fa85eee6a0178ba65&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&bw=52941&orderid=0,3&logo=80000000');
+     
+     
+      $('#description').text(result.description);
+       container.html(html);
+    }
+    
+  });
+  
+}
+
+function ShowUserName()
+      {
+          $.ajax({
+            type:'GET',
+            url:`https://localhost:7181/api/User/GetUserById`,
+            data:{userID:uid},
+            success:(result)=>{
+              const container=$('#user');
+              container.empty();
+              let html='';
+            html+=`
+            <img src="https://1.semantic-ui.com/images/avatar/small/stevie.jpg"  class="ui avatar image">
+            ${uid}`;
+          
+           container.html(html);
+              
+            }
+            
+          })
+      }
+    
+      function ShowMenu()
+      {
+        const menu=$('#me');
+        menu.empty();
+       
+        let html='';
+        html+=`
+        <a  href="VideoSearch.html?id=${userID}" id="link" class="active item" style="position: relative; right: 150px;"><i class="home icon"></i>首页</a>
+                <a href="DeleteManager.html?id=${userID}"id="link" class="item"  style="position: relative; right: 150px;"><i class="trash alternate outline icon"></i>管理</a>
+                <a href="VideoManager.html?id=${userID}"id="link"  class="item" style="position: relative; right: 150px;"><i class="upload icon"></i>投稿</a>
+               
+                <i class="upload icon"></i>投稿 
+        
+        `
+        
+        
+        ;
+        menu.html(html);
+      }
+ShowUserName();
+  GetVideoById();
+
+ShowMenu();
+//CreateNewVideoPage();
+
+   
+      
+  </script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+body{
+    max-width: 100%;
+    overflow-x: hidden;
+    /* 背景选择1——黑白线条 */
+    background-image:url(https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png);
+    /* 背景选择2——花朵 */
+    background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png);
+    
+   
+}
+.A{
+    height: 80px;
+}
+.B{
+    padding: 0.7em;
+    padding-left: 2em;
+}
+.foot{
+    position: absolute;
+    top: 500px;
+}
+.m-padded-tb-massive
+{
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+.foot_text{
+   position: absolute;
+   left: 600px;
+   font-weight: 300;
+   letter-spacing: 1px;
+   line-height: 1.8;
+  
+}
+.text_opacity
+{
+ /* 文字透明度设置 */
+   opacity: 0.8; 
+}
+.foot_position{
+    position: absolute;
+    left: 35px;
+}
+/* 设置首页底部大标题的位置 */
+.T{
+    position: absolute !important;
+    left: 120px !important;
+    top: 0px;
+   
+}
+/* 设置首页底部小文字的位置 */
+.detail_position{
+    position: relative ;
+    left: 108px;
+}
+.left_header_size{
+    position: relative;
+    left: 50px;
+    top: 10px;
+}
+.middle_size
+{
+   height: 50px;
+}
+.logo_position{
+    position: relative;
+    top: -20px;
+}
+/* 博客区的整体位置/规格设置 */
+.size_large{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 1200px;
+    position: relative;
+    left: 100px;
+}
+/* 单独博客的日期/用户栏位置设置 */
+.grid_position{
+    position: relative;
+    top: 20px;
+}
+/* 首页内容部分的右边区域位置设置 */
+.right_position{
+    position: relative;
+    right: -100px;
+    top: 10px;
+}
+/* 单独博客内部的padding设置 */
+.internal_padding{
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+   
+    
+}
+/* 设置文字不block化 */
+.m-inline-block{
+    display: inline-block !important;
+}
+/* more的位置设置
+.more_position
+{
+    position: relative;
+    right: -70px;
+} */
+.m-middle{
+   margin-top: 1em !important;
+   margin-left: 1em !important;
+   margin-left: 3em !important;
+   margin-right: 1em !important;
+   width: 100px;
+   height: 30px;
+}
+/* .m-big{
+    margin-top: 0.5em !important;
+    margin-left: 0.5em !important;
+} */
+
+/* 定义文字颜色为黑色 */
+.m-black{
+    color: #333 !important;
+}
+/* 定义二维码的位置*/
+.wechat_position{
+position: relative;
+left: 100px;
+}
+.m-margin-top{
+    margin-top: 2em !important;
+}
+
+/* blog页面的CSS */
+
+/* container整体的位置设置 */
+.m-padding-middle{
+   padding-left: 0.5em !important;
+   padding-right: 0.5em !important;
+   padding-top: 2.5em !important;
+}
+/* container整体的大小设置 */
+.m-container{
+max-width: 60em !important;
+margin: auto !important;
+}
+/* 博客内容content的内容间距设置 */
+.m-padded-lr{
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+.m-padded-tb-large{
+padding-top: 2em !important;
+padding-bottom: 2em !important;
+}
+.m-padded-tb-big{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+.m-margin-tb-tiny{
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+/* 阴影设置 */
+.m-shadow-small{
+    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+.container{
+    max-width: 72em !important;
+    margin: auto !important;
+}
+.m-margin-tb-middle{
+    margin-top: 0.8em !important;
+    margin-bottom: 0.8em !important;
+}
+.right{
+    position: relative;
+    left: 100px;
+
+    
+}
+.m-padded-big{
+    padding-top: 3em !important;
+  
+}

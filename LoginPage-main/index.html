@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/semantic.css"> 
+    <style>
+        body{
+            /* background-image: url(ripples.png); */
+            background-image: url("https://soo.starxn.com/starxnlg/bg.png");
+        }
+     </style> 
+</head>
+  <body>
+    <div class="ui middle aligned center aligned grid" style="position: absolute  ; top:100px;left:550px;width:500px;height: 600px;">
+      <div class="column">
+        <h2 class="ui teal image header">
+          <div class="content">
+           登录
+          </div>
+        </h2>
+        <form class="ui large form">
+          <div class="ui stacked segment">
+            <div class="field" style="position:relative;left: 75px;">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" id="inputName" placeholder="Username" style="width:300px">
+              </div>
+            </div>
+            <div class="field" style="position:relative;left: 75px;">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" id="inputPassword" placeholder="Password" style="width:300px">
+              </div>
+            </div>
+            <div class="ui fluid large teal submit button" onclick="Login()">登录</div>
+          </div>
+
+          <div class="ui error message"></div>
+
+        </form>
+
+        <div class="ui message">
+          还没有账号？ <a href="Sign up.html">注册</a>
+        </div>
+      </div>
+    </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+ <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+   <script>
+         function Login() {
+
+        const userName=$('#inputName').val().trim();
+        const userPassword=$('#inputPassword').val().trim();
+       
+        $.ajax({
+					type: 'GET',
+					url: `https://localhost:7181/api/User/GetisCorrect?name=${userName}&password=${userPassword}`,
+         
+					success: (result)=>{
+                      if(result==true)
+                      {
+                        alert("登录成功！");
+                      
+                        // window.location.href = `VideoSearch.html?id=`;
+                        UserInformation();
+                        
+                      }
+                      else
+                      {
+                        alert("登录失败！");
+                      }
+                    },
+	
+                    error: (error) => {
+                          console.log(error);
+                          alert('登录异常');
+                      },
+				});
+      }
+
+      function UserInformation()
+      {
+        const userName=$('#inputName').val().trim();
+        $.ajax({
+          type:'GET',
+          url:`https://localhost:7181/api/User?name=${userName}`,
+          success:(result)=>{
+            window.location.href = `VideoSearch.html?id=${result.userID}`;
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
